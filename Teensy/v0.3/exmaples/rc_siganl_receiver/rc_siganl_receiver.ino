@@ -25,7 +25,7 @@ void loop() {
 }
 
 bool readPwm() {
-  for (int ch = 0; ch < 4; ch++) {
+  for (int ch = 0; ch < 6; ch++) {
     ch_high_time[ch] = pulseIn(ch_pinNum[ch], HIGH, 14000); // read pwm pulse(high signal)
 
     if (ch_high_time[ch] < connnection_timeout) {
