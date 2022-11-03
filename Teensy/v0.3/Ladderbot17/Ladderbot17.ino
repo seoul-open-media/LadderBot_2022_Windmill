@@ -142,6 +142,8 @@ int pos = 0; // variable to store the servo position
 #define LPS2_ADDRESS 2
 #define ADAPTOR_ADDRESS 200
 
+#define num_of_channel 6
+
 int16_t actuatorPwm_ = 255;
 
 byte sensor_min = 75;  ///////////////////////////////Need to be calibrated
@@ -423,6 +425,19 @@ int led_states[4] = {LOW, LOW, LOW, LOW};
 int neoKey_num, entry_counter = 0;
 bool neoKey_enter, neoKey_exit = false;
 
+
+// RC Receiver
+bool is_connected = false;
+bool serialDebug = true;
+
+const unsigned short connnection_timeout = 940; // in us
+
+char ch_pinNum[num_of_channel] = {39, 40, 41, 42, 43, 44};
+unsigned short ch_high_time[num_of_channel] = {0, 0, 0, 0, 0, 0};
+unsigned short ch_max[num_of_channel] = {1750, 1750, 2000, 1750, 2000, 2000};
+unsigned short ch_min[num_of_channel] = {1250, 1250, 1000, 1250, 1000, 1000};
+int ch_value[num_of_channel] = {0, 0, 0, 0, 0, 0};
+
 //////////////////////////////////////////////////////////////// SETUP
 void setup()
 {
@@ -472,7 +487,10 @@ void setup()
       ;
   }
 
-
+  //rc receiver pinMode
+  for (int ch = 0; ch < num_of_channel; ch++) {
+    pinMode(ch_pinNum[ch], INPUT);
+  }
   // Accel_Init();
   // Gyro_Init();
   // // Serial.println("Gyro Initialized");
@@ -582,7 +600,7 @@ void loop()
 
   // if(isSceneStop) sceneStop();
 
-  callLPSGetDataCalcCoord(); // Call LPS, get distance data and calculate coordinates and theta
+//  callLPSGetDataCalcCoord(); // Call LPS, get distance data and calculate coordinates and theta
 
 
   if (ebimuMetro.check() == 1)
