@@ -94,13 +94,13 @@ int pos = 0; // variable to store the servo position
 #define HWSERIAL Serial1
 #define r_lenData 30
 
-<<<<<<< Updated upstream
+//<<<<<<< Updated upstream
 #define SERVOMIN 255  // This is the 'minimum' pulse length count (out of 4096)
 #define SERVOMAX 440  // This is the 'maximum' pulse length count (out of 4096)
-=======
-#define SERVOMIN 255d  // 180// This is the 'minimum' pulse length count (out of 4096)
-#define SERVOMAX 440  // 440 This is the 'maximum' pulse length count (out of 4096)
->>>>>>> Stashed changes
+//=======
+//#define SERVOMIN 255d  // 180// This is the 'minimum' pulse length count (out of 4096)
+//#define SERVOMAX 440  // 440 This is the 'maximum' pulse length count (out of 4096)
+//>>>>>>> Stashed changes
 #define USMIN 600     // This is the rounded 'minimum' microsecond length based on the minimum pulse of 150
 #define USMAX 2400    // This is the rounded 'maximum' microsecond length based on the maximum pulse of 600
 #define SERVO_FREQ 60 // Analog servos run at ~50 Hz updates
@@ -142,6 +142,9 @@ int pos = 0; // variable to store the servo position
 #define LPS2_ADDRESS 2
 #define ADAPTOR_ADDRESS 200
 
+// rc receiver
+#define MIDDLE_VALUE 50
+#define OFFSET 10
 #define num_of_channel 6
 
 int16_t actuatorPwm_ = 255;
@@ -601,7 +604,8 @@ void loop()
   // if(isSceneStop) sceneStop();
 
 //  callLPSGetDataCalcCoord(); // Call LPS, get distance data and calculate coordinates and theta
-
+  
+  rcControl();
 
   if (ebimuMetro.check() == 1)
     EBimuCommand("*");

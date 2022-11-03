@@ -1,18 +1,18 @@
-void runActuator() {
-  ////////////////////// Run actuator only when we didn't reached the destination and boundary
-  if (reached_destination != true && reached_boundary != true) {
-
-    if (sensor_value < sensor_min&& a_state == STATE_GOING_DOWN) { // we reached the bottom
-      pullActuator();
-      a_state = STATE_GOING_UP;
-    } else if (sensor_value > sensor_max && a_state == STATE_GOING_UP) { // we reached top
-      pushActuator();
-      a_state = STATE_GOING_DOWN;
-    }
-  } else {
-    stopActuator();
-  }
-}
+//void runActuator() {
+//  ////////////////////// Run actuator only when we didn't reached the destination and boundary
+//  if (reached_destination != true && reached_boundary != true) {
+//
+//    if (sensor_value < sensor_min&& a_state == STATE_GOING_DOWN) { // we reached the bottom
+//      pullActuator();
+//      a_state = STATE_GOING_UP;
+//    } else if (sensor_value > sensor_max && a_state == STATE_GOING_UP) { // we reached top
+//      pushActuator();
+//      a_state = STATE_GOING_DOWN;
+//    }
+//  } else {
+//    stopActuator();
+//  }
+//}
 
 void decelMax() {
   if (abs((abs(sensor_value) - sensor_max)) < 10){
