@@ -15,7 +15,7 @@ bool readPwm() {
 }
 
 void print_debug() {
-   is_connected = readPwm();
+//   is_connected = readPwm();
 
   if (serialDebug == true) {
     Serial.print("CH1: ");
@@ -34,6 +34,6 @@ void print_debug() {
   }
 }
 
-int8_t getValue(const uint8_t &ch) {
+int16_t getValue(const uint8_t &ch) {
   return ch_value[ch];
 }

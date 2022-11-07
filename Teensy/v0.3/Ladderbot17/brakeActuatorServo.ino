@@ -16,7 +16,7 @@
 
 void decelMax() {
   if (abs((abs(sensor_value) - sensor_max)) < 10){
-        actuatorPwm_ = pow(abs((abs(sensor_value) - sensor_max)),2) + 100;
+        actuatorPwm_ = pow(abs((abs(sensor_value) - sensor_max)),2) + 120;
         // Serial.println("decel: ");
         }
         else actuatorPwm_ = 255;
@@ -24,7 +24,7 @@ void decelMax() {
 
 void decelMin() {
   if (abs((abs(sensor_value) - sensor_min)) < 10){
-        actuatorPwm_ = pow(abs((abs(sensor_value) - sensor_min)),2) + 100;
+        actuatorPwm_ = pow(abs((abs(sensor_value) - sensor_min)),2) + 120;
         // Serial.println("decel: ");
         }
         else actuatorPwm_ = 255;
@@ -60,6 +60,7 @@ void brakeAll() {
 
 }
 void brakeAllRelease() {
+//  Serial.println("no brake");
   analogWrite(M3_PWM_PIN, 0); 
   digitalWrite(M3_A_PIN, LOW);
   digitalWrite(M3_B_PIN, LOW);
@@ -71,6 +72,7 @@ void brakeAllRelease() {
 }
 
 void brake12() {
+//  Serial.println("front brake");
   analogWrite(M3_PWM_PIN, 255);
   digitalWrite(M3_A_PIN, HIGH);
   digitalWrite(M3_B_PIN, LOW);
@@ -81,6 +83,7 @@ void brake12() {
 }
 
 void brake34() {
+//  Serial.println("rear brake");
   analogWrite(M3_PWM_PIN, 0);
   digitalWrite(M3_A_PIN, LOW);
   digitalWrite(M3_B_PIN, LOW);

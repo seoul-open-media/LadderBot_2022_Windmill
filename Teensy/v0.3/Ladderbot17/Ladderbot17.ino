@@ -149,8 +149,8 @@ int pos = 0; // variable to store the servo position
 
 int16_t actuatorPwm_ = 255;
 
-byte sensor_min = 75;  ///////////////////////////////Need to be calibrated
-byte sensor_max = 230; /////////////////////////////////
+byte sensor_min = 30;  ///////////////////////////////Need to be calibrated
+byte sensor_max = 55; /////////////////////////////////
 
 ////////////////// mode
 #define MODE_AUTONOMOUS 0
@@ -565,9 +565,9 @@ void setup()
 
   state = STATE_INIT;
   a_state = STATE_GOING_DOWN;
-  // brakeAll();
-  // brake12();
-  // brake34();
+//   brakeAll();
+//   brake12();
+//   brake34();
 
 
   for (int i; i < NUM_SCENE; i++) {
@@ -578,14 +578,14 @@ void setup()
   timer = millis();
   delay(20);
   counter1 = 0;
-  Serial.print("1");
+//  Serial.print("1");
 
-   // if we find neokey, go into configuration mode
-  if (neokey.begin(0x30)) {     // begin with I2C address, default is 0x30
-    // enter configuration mode
-    Serial.println("NeoKey started!");
-  }
-    Serial.print("2");
+//   // if we find neokey, go into configuration mode
+//  if (neokey.begin(0x30)) {     // begin with I2C address, default is 0x30
+//    // enter configuration mode
+//    Serial.println("NeoKey started!");
+//  }
+//    Serial.print("2");
 
   Serial.println("End of Setup");
   // step1();
@@ -605,7 +605,8 @@ void loop()
 
 //  callLPSGetDataCalcCoord(); // Call LPS, get distance data and calculate coordinates and theta
   
-  rcControl();
+  if(is_connected) rcControl();
+  
 
   if (ebimuMetro.check() == 1)
     EBimuCommand("*");
@@ -616,22 +617,26 @@ void loop()
    // Serial.print(euler_EBIMU[1]); Serial.print(", "); Serial.println(euler_EBIMU[2]);
     sensor_value = map(sensor_value, 0, 70, 70, 0);
     Serial.println(sensor_value);
+    is_connected = readPwm();
+  
+  
   }
 
   // getHWSerial();
 
   if (displayMetro.check() == 1) {
     displaySensorY();
+//    print_debug();
     // sendPosition();
     //  serialDebugMessage01();
   }
 
-  if (mode == MODE_AUTONOMOUS)
-    modeAutonomous(); // 0
-  if (mode == MODE_BASIC_TEST)
-    modeBasicTest(); // 1
-  if (mode == MODE_BASIC_MOVEMENT)
-    modeBasicMovement(); // 2
+//  if (mode == MODE_AUTONOMOUS)
+//    modeAutonomous(); // 0
+//  if (mode == MODE_BASIC_TEST)
+//    modeBasicTest(); // 1
+//  if (mode == MODE_BASIC_MOVEMENT)
+//    modeBasicMovement(); // 2
 
 }
 void serialDebugMessage01() {
