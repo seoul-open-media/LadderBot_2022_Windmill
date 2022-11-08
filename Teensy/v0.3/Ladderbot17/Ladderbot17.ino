@@ -94,6 +94,23 @@ int pos = 0; // variable to store the servo position
 #define HWSERIAL Serial1
 #define r_lenData 30
 
+// rc receiver
+#define MIDDLE_VALUE 50
+#define OFFSET 10
+#define num_of_channel 6
+
+// values for ch6
+#define DOWN_MIN 45
+#define DOWN_MAX 55
+#define UP_MIN 30
+#define UP_MAX 55
+
+// servo_value
+#define FRONT_MIN -50
+#define FRONT_MAX 50
+#define REAR_MIN -40
+#define REAR_MAX 50
+
 //<<<<<<< Updated upstream
 #define SERVOMIN 255  // This is the 'minimum' pulse length count (out of 4096)
 #define SERVOMAX 440  // This is the 'maximum' pulse length count (out of 4096)
@@ -141,11 +158,6 @@ int pos = 0; // variable to store the servo position
 #define LPS1_ADDRESS 1
 #define LPS2_ADDRESS 2
 #define ADAPTOR_ADDRESS 200
-
-// rc receiver
-#define MIDDLE_VALUE 50
-#define OFFSET 10
-#define num_of_channel 6
 
 int16_t actuatorPwm_ = 255;
 

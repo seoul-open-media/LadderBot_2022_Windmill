@@ -9,8 +9,8 @@ void rcServo(const int &ch_value1, const int &ch_value2) {
   uint16_t value = (SERVOMAX - SERVOMIN) / 2;
   uint16_t value1 = (SERVOMAX - SERVOMIN) / 2;
   
-  int16_t servo_value = map(ch_value1, 0, 150, -50, 50); // calculate from ch_value1
-  int16_t servo_value1 = map(ch_value1, 0, 150, 50, -40); // calculate from ch_value1
+  int16_t servo_value = map(ch_value1, 0, 150, FRONT_MIN, FRONT_MAX); // calculate from ch_value1
+  int16_t servo_value1 = map(ch_value1, 0, 150, REAR_MAX, REAR_MIN); // calculate from ch_value1
 
   value = ((SERVOMAX - SERVOMIN) / 2 + SERVOMIN) + (servo_value * (SERVOMAX - SERVOMIN) / 100);
   value1 = ((SERVOMAX - SERVOMIN) / 2 + SERVOMIN) + (servo_value1 * (SERVOMAX - SERVOMIN) / 100);
@@ -62,13 +62,11 @@ void rcActuator(const int &ch_value5) {
 
 void rcActuatorRange(const int &ch_value6) {
   if (ch_value6 > MIDDLE_VALUE) {
-//    Serial.println("Sensor limits: 30, 65");
-    sensor_min = 45;
-    sensor_max = 55;
+    sensor_min = DOWN_MIN;
+    sensor_max = DOWN_MAX;
   } else {
-//    Serial.println("Sensor limits: 45, 65");
-    sensor_min = 45;
-    sensor_max = 55;
+    sensor_min = UP_MIN;
+    sensor_max = UP_MAX;
   }
 }
 
