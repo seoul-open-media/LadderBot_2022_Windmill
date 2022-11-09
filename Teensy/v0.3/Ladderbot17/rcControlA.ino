@@ -1,5 +1,5 @@
 void rcControlA(){
-  if(!rcStraight(getValue(0))) rcTurn(getValue(1));
+  if(!rcStraight(getValue(1))) rcTurn(getValue(0));
   rcSensorVal(getValue(2));
   rcActuatorVel(getValue(3));
 }
@@ -14,16 +14,18 @@ void rcTurn(const int &ch_value1){
   }
 }
 
-bool rcStraight(const int &ch_value2) {
-  // add a value to control sensor min
-  // sensor max default
+bool rcStraight(const int &ch_value2) {  
   if (ch_value2 - OFFSET > MIDDLE_VALUE) {
     // go forward
-    rc_state = RCSTATE_INIT;
+    sensor_min = map(ch_value2, MIDDLE_VALUE + OFFSET, 150, 45, 20);
+    goStraight();
+//    rc_state = RCSTATE_INIT;
     return true;
   } else if (ch_value2 + OFFSET < MIDDLE_VALUE) {
     // go back
-    rc_state = RCSTATE_INIT;
+    sensor_min = map(ch_value2, MIDDLE_VALUE + OFFSET, 0, 45, 20);
+    goBack();
+//    rc_state = RCSTATE_INIT;
     return true;
   } else {
     // stop
@@ -32,13 +34,7 @@ bool rcStraight(const int &ch_value2) {
 }
 
 void rcSensorVal(const int &ch_value3){
-  if (ch_value3 - OFFSET > MIDDLE_VALUE) {
-    // sensor min and max low
-  } else if (ch_value3 + OFFSET < MIDDLE_VALUE) {
-    // sensor min and max high
-  } else {
-    // sensor min and max default
-  }
+  sensor_max = map(ch_value3, 0, 100, 30, 60);
 }
 
 void rcActuatorVel(const int &ch_value4){
@@ -49,7 +45,4 @@ void rcActuatorVel(const int &ch_value4){
   } else {
     // do nothing
   }
-  
-  
-  
 }
