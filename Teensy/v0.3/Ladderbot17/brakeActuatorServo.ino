@@ -95,30 +95,39 @@ void brake34() {
 }
 
 void servoControl(byte servo_mode) {
-  uint16_t value = (SERVOMAX - SERVOMIN)/2;
+  uint16_t value = (SERVOMAX - SERVOMIN)/2;  
+  uint16_t value1 = (SERVOMAX - SERVOMIN)/2;
   int16_t servo_value = 0;
+  int16_t servo_value1 = 0;
+  
   if (servo_mode != previous_servo_mode) {
     previous_servo_mode = servo_mode;
     switch (servo_mode) {
       case SERVO_STRAIGHT:
         servo_value = -12;
+        servo_value1 = 15;
         value = ((SERVOMAX - SERVOMIN)/2 + SERVOMIN) + (servo_value * (SERVOMAX - SERVOMIN)/100);
-        pwm1_.setPWM(SERVO_1_PIN_, 0, value);
-        // pwm1_.setPWM(SERVO_2_PIN_, 0, value);
+        value1 = ((SERVOMAX - SERVOMIN)/2 + SERVOMIN) + (servo_value1 * (SERVOMAX - SERVOMIN)/100);
+        pwm_.setPWM(SERVO_1_PIN_, 0, value);
+        pwm_.setPWM(SERVO_2_PIN_, 0, value1);
         break;
 
       case SERVO_LEFT:
         servo_value = -50;
+        servo_value1 = 50;
         value = ((SERVOMAX - SERVOMIN)/2 + SERVOMIN) + (servo_value * (SERVOMAX - SERVOMIN)/100);
-        pwm1_.setPWM(SERVO_1_PIN_, 0, value);
-        // pwm1_.setPWM(SERVO_2_PIN_, 0, value);
+        value1 = ((SERVOMAX - SERVOMIN)/2 + SERVOMIN) + (servo_value1 * (SERVOMAX - SERVOMIN)/100);
+        pwm_.setPWM(SERVO_1_PIN_, 0, value);
+        pwm_.setPWM(SERVO_2_PIN_, 0, value1);
         break;
 
       case SERVO_RIGHT:
-        servo_value = 23;
+        servo_value = 30;
+        servo_value1 = -23;
         value = ((SERVOMAX - SERVOMIN)/2 + SERVOMIN) + (servo_value * (SERVOMAX - SERVOMIN)/100);
-        pwm1_.setPWM(SERVO_1_PIN_, 0, value);
-        // pwm1_.setPWM(SERVO_2_PIN_, 0, value);
+        value1 = ((SERVOMAX - SERVOMIN)/2 + SERVOMIN) + (servo_value1 * (SERVOMAX - SERVOMIN)/100);
+        pwm_.setPWM(SERVO_1_PIN_, 0, value);
+        pwm_.setPWM(SERVO_2_PIN_, 0, value1);
         break;
 
       default:

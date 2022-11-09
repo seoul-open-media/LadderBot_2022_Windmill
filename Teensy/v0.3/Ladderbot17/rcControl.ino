@@ -15,16 +15,16 @@ void rcServo(const int &ch_value1, const int &ch_value2) {
   value = ((SERVOMAX - SERVOMIN) / 2 + SERVOMIN) + (servo_value * (SERVOMAX - SERVOMIN) / 100);
   value1 = ((SERVOMAX - SERVOMIN) / 2 + SERVOMIN) + (servo_value1 * (SERVOMAX - SERVOMIN) / 100);
   
-  pwm1_.setPWM(SERVO_1_PIN_, 0, value);
-  pwm1_.setPWM(SERVO_2_PIN_, 0, value1);
+  pwm_.setPWM(SERVO_1_PIN_, 0, value);
+  pwm_.setPWM(SERVO_2_PIN_, 0, value1);
 //  Serial.print("ch_value1: "); Serial.println(ch_value1);
 //  Serial.println(servo_value);
 //  if (ch_value2 - OFFSET > MIDDLE_VALUE) {
 ////    Serial.println("front servo");
-//    pwm1_.setPWM(SERVO_1_PIN_, 0, value);
+//    pwm_.setPWM(SERVO_1_PIN_, 0, value);
 //  } else if (ch_value2 + OFFSET < MIDDLE_VALUE) {
 ////    Serial.println("rear servo");
-//    pwm1_.setPWM(SERVO_2_PIN_, 0, value);
+//    pwm_.setPWM(SERVO_2_PIN_, 0, value);
 //  } else {
 //    // do nothing
 //  }

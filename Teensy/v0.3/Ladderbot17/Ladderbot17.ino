@@ -561,8 +561,8 @@ void setup()
 
   uint16_t front_value = ((SERVOMAX - SERVOMIN) / 2 + SERVOMIN) + (-12 * (SERVOMAX - SERVOMIN) / 100);
   uint16_t rear_value = ((SERVOMAX - SERVOMIN) / 2 + SERVOMIN) + (10 * (SERVOMAX - SERVOMIN) / 100);
-  pwm1_.setPWM(SERVO_1_PIN_, 0, front_value);
-  pwm1_.setPWM(SERVO_2_PIN_, 0, rear_value);
+  pwm_.setPWM(SERVO_1_PIN_, 0, front_value);
+  pwm_.setPWM(SERVO_2_PIN_, 0, rear_value);
 
   pullActuator(); //////////////// Iintial State is Standing Up
   brakeAllRelease();
@@ -617,7 +617,9 @@ void loop()
 
 //  callLPSGetDataCalcCoord(); // Call LPS, get distance data and calculate coordinates and theta
   
-  if(is_connected) rcControl();
+//  if(is_connected) rcControl();
+
+  if(is_connected) rcControlA();
   
 
   if (ebimuMetro.check() == 1)
