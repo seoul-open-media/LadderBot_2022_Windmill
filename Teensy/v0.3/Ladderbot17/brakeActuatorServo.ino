@@ -58,6 +58,12 @@ void brakeAll() {
   digitalWrite(M4_A_PIN, HIGH);
   digitalWrite(M4_B_PIN, LOW);
 
+  //for 4ch transistor circuit
+//  digitalWrite(BRAKE_1_PIN, HIGH);
+//  digitalWrite(BRAKE_2_PIN, HIGH);
+//  digitalWrite(BRAKE_3_PIN, HIGH);
+//  digitalWrite(BRAKE_4_PIN, HIGH);
+
 }
 void brakeAllRelease() {
 //  Serial.println("no brake");
@@ -68,6 +74,12 @@ void brakeAllRelease() {
   analogWrite(M4_PWM_PIN, 0);
   digitalWrite(M4_A_PIN, LOW);
   digitalWrite(M4_B_PIN, LOW);
+
+  //for 4ch transistor circuit
+//  digitalWrite(BRAKE_1_PIN, LOW);
+//  digitalWrite(BRAKE_2_PIN, LOW);
+//  digitalWrite(BRAKE_3_PIN, LOW);
+//  digitalWrite(BRAKE_4_PIN, LOW);
 
 }
 
@@ -80,6 +92,10 @@ void brake12() {
   analogWrite(M4_PWM_PIN, 0);
   digitalWrite(M4_A_PIN, LOW);
   digitalWrite(M4_B_PIN, LOW);
+
+  //for 4ch transistor circuit
+//  digitalWrite(BRAKE_1_PIN, HIGH);
+//  digitalWrite(BRAKE_2_PIN, HIGH);
 }
 
 void brake34() {
@@ -91,6 +107,10 @@ void brake34() {
   analogWrite(M4_PWM_PIN, 255);
   digitalWrite(M4_A_PIN, HIGH);
   digitalWrite(M4_B_PIN, LOW);
+
+  //for 4ch transistor circuit
+//  digitalWrite(BRAKE_3_PIN, HIGH);
+//  digitalWrite(BRAKE_4_PIN, HIGH);
 
 }
 

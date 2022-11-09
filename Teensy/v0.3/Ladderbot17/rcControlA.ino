@@ -1,7 +1,7 @@
 void rcControlA(){
   if(!rcStraight(getValue(1))) rcTurn(getValue(0));
   rcSensorVal(getValue(2));
-  rcActuatorVel(getValue(3));
+    if (actuatorVelMetro.check() == 1) rcActuatorVel(getValue(3));
 }
 
 void rcTurn(const int &ch_value1){
@@ -17,13 +17,13 @@ void rcTurn(const int &ch_value1){
 bool rcStraight(const int &ch_value2) {  
   if (ch_value2 - OFFSET > MIDDLE_VALUE) {
     // go forward
-    sensor_min = map(ch_value2, MIDDLE_VALUE + OFFSET, CH2_MAX, 45, 20);
+    sensor_min = map(ch_value2, MIDDLE_VALUE + OFFSET, CH2_MAX, 45, 25);
     goStraight();
 //    rc_state = RCSTATE_INIT;
     return true;
   } else if (ch_value2 + OFFSET < MIDDLE_VALUE) {
     // go back
-    sensor_min = map(ch_value2, MIDDLE_VALUE + OFFSET, 0, 45, 20);
+    sensor_min = map(ch_value2, MIDDLE_VALUE + OFFSET, 0, 45, 25);
     goBack();
 //    rc_state = RCSTATE_INIT;
     return true;

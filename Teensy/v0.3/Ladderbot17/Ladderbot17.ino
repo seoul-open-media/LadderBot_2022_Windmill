@@ -146,6 +146,11 @@ int pos = 0; // variable to store the servo position
 #define SERVO_1_PIN_ 0
 #define SERVO_2_PIN_ 1
 
+#define BRAKE_1_PIN 28
+#define BRAKE_2_PIN 29
+#define BRAKE_3_PIN 32
+#define BRAKE_4_PIN 33
+
 #define MOVE_THRESHOLD 0.5 // meter
 #define THETA_THRESHOLD 15 // degree
 
@@ -391,6 +396,7 @@ Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire2, OLED_RESET);
 // Metro
 Metro ebimuMetro = Metro(100);
 Metro displayMetro = Metro(1000);
+Metro actuatorVelMetro = Metro(50);
 
 // PWM
 Adafruit_PWMServoDriver pwm_ = Adafruit_PWMServoDriver(0x7F); // address of U3
@@ -504,6 +510,12 @@ void setup()
       ;
   }
 
+  // 4ch brake pinMode
+  pinMode(BRAKE_1_PIN, OUTPUT);
+  pinMode(BRAKE_2_PIN, OUTPUT);
+  pinMode(BRAKE_3_PIN, OUTPUT);
+  pinMode(BRAKE_4_PIN, OUTPUT);
+  
   //rc receiver pinMode
   for (int ch = 0; ch < num_of_channel; ch++) {
     pinMode(ch_pinNum[ch], INPUT);
