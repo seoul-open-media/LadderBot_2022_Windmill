@@ -17,7 +17,7 @@ void rcTurn(const int &ch_value1){
 bool rcStraight(const int &ch_value2) {  
   if (ch_value2 - OFFSET > MIDDLE_VALUE) {
     // go forward
-    sensor_min = map(ch_value2, MIDDLE_VALUE + OFFSET, 150, 45, 20);
+    sensor_min = map(ch_value2, MIDDLE_VALUE + OFFSET, CH2_MAX, 45, 20);
     goStraight();
 //    rc_state = RCSTATE_INIT;
     return true;
@@ -34,7 +34,7 @@ bool rcStraight(const int &ch_value2) {
 }
 
 void rcSensorVal(const int &ch_value3){
-  sensor_max = map(ch_value3, 0, 100, 30, 60);
+  sensor_max = map(ch_value3, 0, CH3_MAX, 30, 60);
 }
 
 void rcActuatorVel(const int &ch_value4){

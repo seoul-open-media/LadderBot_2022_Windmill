@@ -95,6 +95,8 @@ int pos = 0; // variable to store the servo position
 #define r_lenData 30
 
 // rc receiver
+#define CH2_MAX 100
+#define CH3_MAX 100
 #define MIDDLE_VALUE 50
 #define OFFSET 10
 #define num_of_channel 6
