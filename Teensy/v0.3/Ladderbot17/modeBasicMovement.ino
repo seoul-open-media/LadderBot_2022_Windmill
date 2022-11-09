@@ -40,7 +40,7 @@ void goStraight() {
 
     case RCSTATE_STANDUP:
       if (sensor_value < sensor_max) {
-        decelMax();
+//        decelMax();
         brakeAllRelease();
         servoControl(SERVO_STRAIGHT);
         pullActuator();
@@ -51,7 +51,7 @@ void goStraight() {
 
     case RCSTATE_PUSHFORWARD:
       if (sensor_value > sensor_min) {
-        decelMin();
+//        decelMin();
         brake34();
         servoControl(SERVO_STRAIGHT);
         pushActuator();
@@ -62,8 +62,55 @@ void goStraight() {
 
     case RCSTATE_PULLFORWARD:
       if (sensor_value < sensor_max) {
-        decelMax();
+//        decelMax();
         brake12();
+        servoControl(SERVO_STRAIGHT);
+        pullActuator();
+
+      } else {
+        rc_state = RCSTATE_PUSHFORWARD;
+      }
+
+      break;
+
+    default:
+      break;
+
+  }
+}
+
+void goBack() {
+  switch (rc_state) {
+    case RCSTATE_INIT:
+      rc_state = RCSTATE_STANDUP;
+      break;
+
+    case RCSTATE_STANDUP:
+      if (sensor_value < sensor_max) {
+//        decelMax();
+        brakeAllRelease();
+        servoControl(SERVO_STRAIGHT);
+        pullActuator();
+      } else {
+        rc_state = RCSTATE_PUSHFORWARD;
+      }
+      break;
+
+    case RCSTATE_PUSHFORWARD:
+      if (sensor_value > sensor_min) {
+//        decelMin();
+        brake12();
+        servoControl(SERVO_STRAIGHT);
+        pushActuator();
+      } else {
+        rc_state = RCSTATE_PULLFORWARD;
+      }
+      break;
+
+    case RCSTATE_PULLFORWARD:
+      if (sensor_value < sensor_max) {
+//        decelMax();
+        brake34();
         servoControl(SERVO_STRAIGHT);
         pullActuator();
 
@@ -181,7 +228,7 @@ void turnRight() {
 
     case RCSTATE_STANDUP:
       if (sensor_value < sensor_max) {
-        decelMax();
+//        decelMax();
         brakeAllRelease();
         servoControl(SERVO_RIGHT);
         pullActuator();
@@ -192,7 +239,7 @@ void turnRight() {
 
     case RCSTATE_PUSH_TURN:
       if (sensor_value > sensor_min) {
-        decelMin();
+//        decelMin();
         brake34();
         servoControl(SERVO_RIGHT);
         pushActuator();
@@ -203,7 +250,7 @@ void turnRight() {
 
     case RCSTATE_PULL_TURN:
       if (sensor_value < sensor_max) {
-        decelMax();
+//        decelMax();
         brake34();
         servoControl(SERVO_LEFT);
         pullActuator();
@@ -227,7 +274,7 @@ void turnLeft() {
 
     case RCSTATE_STANDUP:
       if (sensor_value < sensor_max) {
-        decelMax();
+//        decelMax();
         brakeAllRelease();
         servoControl(SERVO_LEFT);
         pullActuator();
@@ -238,7 +285,7 @@ void turnLeft() {
 
     case RCSTATE_PUSH_TURN:
       if (sensor_value > sensor_min) {
-        decelMin();
+//        decelMin();
         brake34();
         servoControl(SERVO_LEFT);
         pushActuator();
@@ -249,7 +296,7 @@ void turnLeft() {
 
     case RCSTATE_PULL_TURN:
       if (sensor_value < sensor_max) {
-        decelMax();
+//        decelMax();
         brake34();
         servoControl(SERVO_RIGHT);
         pullActuator();
