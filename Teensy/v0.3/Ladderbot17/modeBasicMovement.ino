@@ -243,7 +243,7 @@ void turnRight() {
     case RCSTATE_PUSH_TURN:
       if (sensor_value > sensor_min) {
 //        decelMin();
-        brake34();
+        brake4();
         servoControl(SERVO_RIGHT);
         pushActuator();
       } else {
@@ -254,7 +254,7 @@ void turnRight() {
     case RCSTATE_PULL_TURN:
       if (sensor_value < sensor_max) {
 //        decelMax();
-        brake34();
+        brake4();
         servoControl(SERVO_LEFT);
         pullActuator();
 
@@ -290,7 +290,7 @@ void turnLeft() {
     case RCSTATE_PUSH_TURN:
       if (sensor_value > sensor_min) {
 //        decelMin();
-        brake34();
+        brake3();
         servoControl(SERVO_LEFT);
         pushActuator();
       } else {
@@ -301,7 +301,7 @@ void turnLeft() {
     case RCSTATE_PULL_TURN:
       if (sensor_value < sensor_max) {
 //        decelMax();
-        brake34();
+        brake3();
         servoControl(SERVO_RIGHT);
         pullActuator();
 

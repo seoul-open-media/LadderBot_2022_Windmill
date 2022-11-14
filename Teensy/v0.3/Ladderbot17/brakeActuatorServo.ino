@@ -96,6 +96,8 @@ void brake12() {
   //for 4ch transistor circuit
   digitalWrite(BRAKE_1_PIN, HIGH);
   digitalWrite(BRAKE_2_PIN, HIGH);
+  digitalWrite(BRAKE_3_PIN, LOW);
+  digitalWrite(BRAKE_4_PIN, LOW);
 }
 
 void brake34() {
@@ -109,9 +111,27 @@ void brake34() {
 //  digitalWrite(M4_B_PIN, LOW);
 
   //for 4ch transistor circuit
+  digitalWrite(BRAKE_1_PIN, LOW);
+  digitalWrite(BRAKE_2_PIN, LOW);
   digitalWrite(BRAKE_3_PIN, HIGH);
   digitalWrite(BRAKE_4_PIN, HIGH);
 
+}
+
+void brake3() {
+  //for 4ch transistor circuit
+  digitalWrite(BRAKE_1_PIN, LOW);
+  digitalWrite(BRAKE_2_PIN, LOW);
+  digitalWrite(BRAKE_3_PIN, HIGH);
+  digitalWrite(BRAKE_4_PIN, LOW);
+}
+
+void brake4() {
+  //for 4ch transistor circuit
+  digitalWrite(BRAKE_1_PIN, LOW);
+  digitalWrite(BRAKE_2_PIN, LOW);
+  digitalWrite(BRAKE_3_PIN, LOW);
+  digitalWrite(BRAKE_4_PIN, HIGH);
 }
 
 void servoControl(byte servo_mode) {
