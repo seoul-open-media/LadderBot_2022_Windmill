@@ -94,9 +94,14 @@ int pos = 0; // variable to store the servo position
 #define HWSERIAL Serial1
 #define r_lenData 30
 
+//======= CALIBRATION VALUES ==============
 // rc receiver
-#define CH2_MAX 100
+#define CH2_MAX 150
 #define CH3_MAX 100
+#define STRIGHT_MIN 28
+#define STRIGHT_MAX 45
+#define SENSOR_MAX_LOW 30
+#define SENSOR_MAX_HIGH 60
 #define MIDDLE_VALUE 50
 #define OFFSET 10
 #define num_of_channel 6
@@ -112,6 +117,15 @@ int pos = 0; // variable to store the servo position
 #define FRONT_MAX 50
 #define REAR_MIN -40
 #define REAR_MAX 50
+
+// servo direction
+#define FRONT_STRAIGHT -12
+#define REAR_STRAIGHT 15
+#define FRONT_LEFT -50
+#define REAR_LEFT 50
+#define FRONT_RIGHT 30
+#define REAR_RIGHT -23
+//==========================================
 
 //<<<<<<< Updated upstream
 #define SERVOMIN 255  // This is the 'minimum' pulse length count (out of 4096)
