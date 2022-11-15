@@ -12,7 +12,7 @@ Adafruit_PWMServoDriver pwm1 = Adafruit_PWMServoDriver(0x7E); // address of U4
 //Adafruit_PWMServoDriver pwm = Adafruit_PWMServoDriver(0x40, Wire);
 
 
-#define SERVOMIN  180 // This is the 'minimum' pulse length count (out of 4096)
+#define SERVOMIN  255 // This is the 'minimum' pulse length count (out of 4096)
 #define SERVOMAX  440 // This is the 'maximum' pulse length count (out of 4096)
 #define USMIN  600 // This is the rounded 'minimum' microsecond length based on the minimum pulse of 150
 #define USMAX  2400 // This is the rounded 'maximum' microsecond length based on the maximum pulse of 600
