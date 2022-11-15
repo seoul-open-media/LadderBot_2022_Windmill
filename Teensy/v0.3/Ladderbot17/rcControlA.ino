@@ -1,8 +1,11 @@
 void rcControlA(){
   if(!rcStraight(getValue(1))) rcTurn(getValue(0));
   rcSensorVal(getValue(2));
-  rcMode(getValue(5));
+  rcMode(getValue(4));
   if (actuatorVelMetro.check() == 1) rcActuatorVel(getValue(3));
+//  Serial.print("STRIGHT_MIN: "); Serial.println(STRIGHT_MIN);
+//  Serial.print("STRIGHT_MAX: "); Serial.println(STRIGHT_MAX);
+  
 }
 
 void rcTurn(const int &ch_value1){
