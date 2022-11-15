@@ -113,12 +113,6 @@ int pos = 0; // variable to store the servo position
 #define MODE_LOW_MIN 28
 #define MODE_LOW_MAX 30
 
-// values for ch6
-#define DOWN_MIN 45
-#define DOWN_MAX 55
-#define UP_MIN 30
-#define UP_MAX 55
-
 // servo_value
 #define FRONT_MIN -50
 #define FRONT_MAX 50
@@ -133,6 +127,12 @@ int pos = 0; // variable to store the servo position
 #define FRONT_RIGHT 30
 #define REAR_RIGHT -23
 //==========================================
+
+// values for ch6
+#define DOWN_MIN 45
+#define DOWN_MAX 55
+#define UP_MIN 30
+#define UP_MAX 55
 
 //<<<<<<< Updated upstream
 #define SERVOMIN 255  // This is the 'minimum' pulse length count (out of 4096)

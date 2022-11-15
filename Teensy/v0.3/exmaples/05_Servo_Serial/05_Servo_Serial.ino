@@ -66,7 +66,7 @@ void loop() {
     prev_servo_value = servo_value;
     value = ((SERVOMAX - SERVOMIN)/2 + SERVOMIN) + (servo_value * (SERVOMAX - SERVOMIN)/100);
     // pwm.setPWM(servonum, 0, value);
-    pwm1.setPWM(servonum, 0, value);
+    pwm.setPWM(servonum, 0, value);
     Serial.println("servo move");
   }
   

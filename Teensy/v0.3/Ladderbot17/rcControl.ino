@@ -2,7 +2,7 @@ void rcControl() {
   rcServo(getValue(0), getValue(1));
   rcBrake(getValue(2), getValue(3));
   rcActuator(getValue(4));
-  rcActuatorRange(getValue(5));
+//  rcActuatorRange(getValue(5));
 }
 
 void rcServo(const int &ch_value1, const int &ch_value2) {
