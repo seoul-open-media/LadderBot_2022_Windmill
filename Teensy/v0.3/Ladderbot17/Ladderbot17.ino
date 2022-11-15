@@ -98,13 +98,20 @@ int pos = 0; // variable to store the servo position
 // rc receiver
 #define CH2_MAX 150
 #define CH3_MAX 100
-#define STRIGHT_MIN 28
-#define STRIGHT_MAX 45
+
 #define SENSOR_MAX_LOW 30
-#define SENSOR_MAX_HIGH 60
+#define SENSOR_MAX_HIGH 65
 #define MIDDLE_VALUE 50
 #define OFFSET 10
 #define num_of_channel 6
+
+// values for ch5
+#define MODE_HIGH_MIN 60
+#define MODE_HIGH_MAX 62
+#define MODE_MID_MIN 28
+#define MODE_MID_MAX 45
+#define MODE_LOW_MIN 28
+#define MODE_LOW_MAX 30
 
 // values for ch6
 #define DOWN_MIN 45
@@ -184,6 +191,9 @@ int16_t actuatorPwm_ = 255;
 
 byte sensor_min = 30;  ///////////////////////////////Need to be calibrated
 byte sensor_max = 55; /////////////////////////////////
+
+uint8_t STRIGHT_MIN = 28;
+uint8_t STRIGHT_MAX = 45;
 
 ////////////////// mode
 #define MODE_AUTONOMOUS 0

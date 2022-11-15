@@ -1,7 +1,8 @@
 void rcControlA(){
   if(!rcStraight(getValue(1))) rcTurn(getValue(0));
   rcSensorVal(getValue(2));
-    if (actuatorVelMetro.check() == 1) rcActuatorVel(getValue(3));
+  rcMode(getValue(5));
+  if (actuatorVelMetro.check() == 1) rcActuatorVel(getValue(3));
 }
 
 void rcTurn(const int &ch_value1){
@@ -44,5 +45,18 @@ void rcActuatorVel(const int &ch_value4){
     if(actuatorPwm_ > 0) actuatorPwm_--;
   } else {
     // do nothing
+  }
+}
+
+void rcMode(const int &ch_value5){
+  if (ch_value5 - OFFSET > MIDDLE_VALUE) {
+    STRIGHT_MIN = MODE_LOW_MIN;
+    STRIGHT_MAX = MODE_LOW_MAX;
+  } else if (ch_value5 + OFFSET < MIDDLE_VALUE) {
+    STRIGHT_MIN = MODE_HIGH_MIN;
+    STRIGHT_MAX = MODE_HIGH_MAX;
+  } else {
+    STRIGHT_MIN = MODE_MID_MIN;
+    STRIGHT_MAX = MODE_MID_MAX;
   }
 }
