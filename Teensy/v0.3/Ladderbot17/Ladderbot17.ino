@@ -120,8 +120,8 @@ int pos = 0; // variable to store the servo position
 #define REAR_MAX 50
 
 // servo direction
-#define FRONT_STRAIGHT -12
-#define REAR_STRAIGHT 15
+#define FRONT_STRAIGHT 6
+#define REAR_STRAIGHT 5
 #define FRONT_LEFT -50
 #define REAR_LEFT 50
 #define FRONT_RIGHT 30
@@ -597,8 +597,8 @@ void setup()
 
   display.clearDisplay();
 
-  uint16_t front_value = ((SERVOMAX - SERVOMIN) / 2 + SERVOMIN) + (-12 * (SERVOMAX - SERVOMIN) / 100);
-  uint16_t rear_value = ((SERVOMAX - SERVOMIN) / 2 + SERVOMIN) + (10 * (SERVOMAX - SERVOMIN) / 100);
+  uint16_t front_value = ((SERVOMAX - SERVOMIN) / 2 + SERVOMIN) + (FRONT_STRAIGHT * (SERVOMAX - SERVOMIN) / 100);
+  uint16_t rear_value = ((SERVOMAX - SERVOMIN) / 2 + SERVOMIN) + (REAR_STRAIGHT * (SERVOMAX - SERVOMIN) / 100);
   pwm_.setPWM(SERVO_1_PIN_, 0, front_value);
   pwm_.setPWM(SERVO_2_PIN_, 0, rear_value);
 
