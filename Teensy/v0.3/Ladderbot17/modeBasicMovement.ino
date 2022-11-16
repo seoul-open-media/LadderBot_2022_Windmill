@@ -245,7 +245,7 @@ void turnRight() {
 //        decelMin();
         brake4();
         servoControl(SERVO_RIGHT);
-        pushActuator();
+        if(!rcServoOnly(getValue(5)))  pushActuator();
       } else {
         rc_state = RCSTATE_PULL_TURN;
       }
@@ -256,7 +256,7 @@ void turnRight() {
 //        decelMax();
         brake4();
         servoControl(SERVO_LEFT);
-        pullActuator();
+        if(!rcServoOnly(getValue(5)))  pullActuator();
 
       } else {
         rc_state = RCSTATE_PUSH_TURN;
@@ -292,7 +292,7 @@ void turnLeft() {
 //        decelMin();
         brake3();
         servoControl(SERVO_LEFT);
-        pushActuator();
+        if(!rcServoOnly(getValue(5)))  pushActuator();
       } else {
         rc_state = RCSTATE_PULL_TURN;
       }
@@ -303,7 +303,7 @@ void turnLeft() {
 //        decelMax();
         brake3();
         servoControl(SERVO_RIGHT);
-        pullActuator();
+        if(!rcServoOnly(getValue(5)))  pullActuator();
 
       } else {
         rc_state = RCSTATE_PUSH_TURN;

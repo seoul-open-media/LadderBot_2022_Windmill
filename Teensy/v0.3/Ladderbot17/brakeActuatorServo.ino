@@ -150,7 +150,7 @@ void servoControl(byte servo_mode) {
         value1 = ((SERVOMAX - SERVOMIN)/2 + SERVOMIN) + (servo_value1 * (SERVOMAX - SERVOMIN)/100);
         pwm_.setPWM(SERVO_1_PIN_, 0, value);
         pwm_.setPWM(SERVO_2_PIN_, 0, value1);
-        Serial.println("SERVO_STRAIGHT");
+//        Serial.println("SERVO_STRAIGHT");
         break;
 
       case SERVO_LEFT:
@@ -160,7 +160,7 @@ void servoControl(byte servo_mode) {
         value1 = ((SERVOMAX - SERVOMIN)/2 + SERVOMIN) + (servo_value1 * (SERVOMAX - SERVOMIN)/100);
         pwm_.setPWM(SERVO_1_PIN_, 0, value);
         pwm_.setPWM(SERVO_2_PIN_, 0, value1);
-        Serial.println("SERVO_LEFT");
+//        Serial.println("SERVO_LEFT");
         break;
 
       case SERVO_RIGHT:
@@ -170,7 +170,7 @@ void servoControl(byte servo_mode) {
         value1 = ((SERVOMAX - SERVOMIN)/2 + SERVOMIN) + (servo_value1 * (SERVOMAX - SERVOMIN)/100);
         pwm_.setPWM(SERVO_1_PIN_, 0, value);
         pwm_.setPWM(SERVO_2_PIN_, 0, value1);
-        Serial.println("SERVO_RIGHT");
+//        Serial.println("SERVO_RIGHT");
         break;
 
       default:

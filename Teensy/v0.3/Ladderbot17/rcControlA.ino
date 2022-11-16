@@ -63,3 +63,11 @@ void rcMode(const int &ch_value5){
     STRIGHT_MAX = MODE_MID_MAX;
   }
 }
+
+bool rcServoOnly(const int &ch_value6) {  
+  if (ch_value6 - OFFSET > MIDDLE_VALUE) {
+    return false;
+  } else if (ch_value6 + OFFSET < MIDDLE_VALUE) {
+    return true;
+  }
+}
