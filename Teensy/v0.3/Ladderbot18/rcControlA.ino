@@ -1,10 +1,30 @@
 void rcControlA(){
-  if(!rcStraight(getValue(1))) rcTurn(getValue(0));
+//  if(!rcStraight(getValue(1))) rcTurn(getValue(0));
+  if(!rcStraight(getValue(1))){
+    sensor_min = SENSOR_MAX_LOW;
+    sensor_max = SENSOR_MAX_HIGH;
+    if (isRcStraight && (rc_state = RCSTATE_PUSHFORWARD)){
+      if(sensor_value > sensor_min){
+        pushActuator();
+      }else{
+        isRcStraight = false;
+      }
+    }else if(isRcStraight && (rc_state = RCSTATE_PULLFORWARD)){
+      if(sensor_value < sensor_max){
+        pullActuator();
+      }else{
+        isRcStraight = false;
+      }
+    }
+    rcTurn(getValue(0));
+  }
+
+  
   rcSensorVal(getValue(2));
   rcMode(getValue(4));
   if (actuatorVelMetro.check() == 1) rcActuatorVel(getValue(3));
-//  Serial.print("STRIGHT_MIN: "); Serial.println(STRIGHT_MIN);
-//  Serial.print("STRIGHT_MAX: "); Serial.println(STRIGHT_MAX);
+//  Serial.print("straight_min: "); Serial.println(straight_min);
+//  Serial.print("straight_max: "); Serial.println(straight_max);
   
 }
 
@@ -21,14 +41,16 @@ void rcTurn(const int &ch_value1){
 bool rcStraight(const int &ch_value2) {  
   if (ch_value2 - OFFSET > MIDDLE_VALUE) {
     // go forward
-    sensor_min = map(ch_value2, MIDDLE_VALUE + OFFSET, CH2_MAX, STRIGHT_MAX, STRIGHT_MIN);
+    sensor_min = map(ch_value2, MIDDLE_VALUE + OFFSET, CH2_MAX, straight_max, straight_min);
     goStraight();
+    isRcStraight = true;
 //    rc_state = RCSTATE_INIT;
     return true;
   } else if (ch_value2 + OFFSET < MIDDLE_VALUE) {
     // go back
-    sensor_min = map(ch_value2, MIDDLE_VALUE + OFFSET, 0, STRIGHT_MAX, STRIGHT_MIN);
+    sensor_min = map(ch_value2, MIDDLE_VALUE + OFFSET, 0, straight_max, straight_min);
     goBack();
+    isRcStraight = true;
 //    rc_state = RCSTATE_INIT;
     return true;
   } else {
@@ -53,14 +75,14 @@ void rcActuatorVel(const int &ch_value4){
 
 void rcMode(const int &ch_value5){
   if (ch_value5 - OFFSET > MIDDLE_VALUE) {
-    STRIGHT_MIN = MODE_LOW_MIN;
-    STRIGHT_MAX = MODE_LOW_MAX;
+    straight_min = MODE_LOW_MIN;
+    straight_max = MODE_LOW_MAX;
   } else if (ch_value5 + OFFSET < MIDDLE_VALUE) {
-    STRIGHT_MIN = MODE_HIGH_MIN;
-    STRIGHT_MAX = MODE_HIGH_MAX;
+    straight_min = MODE_HIGH_MIN;
+    straight_max = MODE_HIGH_MAX;
   } else {
-    STRIGHT_MIN = MODE_MID_MIN;
-    STRIGHT_MAX = MODE_MID_MAX;
+    straight_min = MODE_MID_MIN;
+    straight_max = MODE_MID_MAX;
   }
 }
 

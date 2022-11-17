@@ -99,19 +99,19 @@ int pos = 0; // variable to store the servo position
 #define CH2_MAX 150
 #define CH3_MAX 100
 
-#define SENSOR_MAX_LOW 34
-#define SENSOR_MAX_HIGH 70
+#define SENSOR_MAX_LOW 30
+#define SENSOR_MAX_HIGH 62
 #define MIDDLE_VALUE 50
 #define OFFSET 10
 #define num_of_channel 6
 
 // values for ch5
-#define MODE_HIGH_MIN 68
-#define MODE_HIGH_MAX 70
-#define MODE_MID_MIN 34
-#define MODE_MID_MAX 50
-#define MODE_LOW_MIN 34
-#define MODE_LOW_MAX 36
+#define MODE_HIGH_MIN 58
+#define MODE_HIGH_MAX 60
+#define MODE_MID_MIN 28
+#define MODE_MID_MAX 45
+#define MODE_LOW_MIN 28
+#define MODE_LOW_MAX 30
 
 // servo_value
 #define FRONT_MIN -50
@@ -120,12 +120,12 @@ int pos = 0; // variable to store the servo position
 #define REAR_MAX 50
 
 // servo direction
-#define FRONT_STRAIGHT -9
-#define REAR_STRAIGHT -9
-#define FRONT_LEFT -40
+#define FRONT_STRAIGHT -8
+#define REAR_STRAIGHT 20
+#define FRONT_LEFT -50
 #define REAR_LEFT 40
-#define FRONT_RIGHT 40
-#define REAR_RIGHT -50
+#define FRONT_RIGHT 30
+#define REAR_RIGHT -10
 //==========================================
 
 // values for ch6
@@ -187,13 +187,15 @@ int pos = 0; // variable to store the servo position
 #define LPS2_ADDRESS 2
 #define ADAPTOR_ADDRESS 200
 
+boolean isRcStraight = false;
+
 int16_t actuatorPwm_ = 255;
 
 byte sensor_min = 30;  ///////////////////////////////Need to be calibrated
 byte sensor_max = 55; /////////////////////////////////
 
-uint8_t STRIGHT_MIN = 28;
-uint8_t STRIGHT_MAX = 45;
+uint8_t straight_min = 28;
+uint8_t straight_max = 45;
 
 ////////////////// mode
 #define MODE_AUTONOMOUS 0
@@ -601,9 +603,23 @@ void setup()
   uint16_t rear_value = ((SERVOMAX - SERVOMIN) / 2 + SERVOMIN) + (REAR_STRAIGHT * (SERVOMAX - SERVOMIN) / 100);
   pwm_.setPWM(SERVO_1_PIN_, 0, front_value);
   pwm_.setPWM(SERVO_2_PIN_, 0, rear_value);
-
-  pullActuator(); //////////////// Iintial State is Standing Up
+  
   brakeAllRelease();
+  
+  while(sensor_value < SENSOR_MAX_HIGH){
+    if (ebimuMetro.check() == 1)
+    EBimuCommand("*");
+
+    if (EBimuAsciiParser(euler_EBIMU, 3))
+    {
+      sensor_value = euler_EBIMU[1];
+     // Serial.print(euler_EBIMU[1]); Serial.print(", "); Serial.println(euler_EBIMU[2]);
+      sensor_value = map(sensor_value, 0, 70, 70, 0);
+      Serial.println(sensor_value);
+    }
+    pullActuator(); //////////////// Iintial State is Standing Up
+  }
+ 
   //   delay(3000);
 
   //   /////////////////////////////// Initialize
