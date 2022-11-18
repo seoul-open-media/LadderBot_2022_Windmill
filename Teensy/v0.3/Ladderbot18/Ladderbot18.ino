@@ -99,19 +99,19 @@ int pos = 0; // variable to store the servo position
 #define CH2_MAX 150
 #define CH3_MAX 100
 
-#define SENSOR_MAX_LOW 30
-#define SENSOR_MAX_HIGH 62
+#define SENSOR_MAX_LOW 25
+#define SENSOR_MAX_HIGH 54
 #define MIDDLE_VALUE 50
 #define OFFSET 10
 #define num_of_channel 6
 
 // values for ch5
-#define MODE_HIGH_MIN 58
-#define MODE_HIGH_MAX 60
-#define MODE_MID_MIN 28
+#define MODE_HIGH_MIN 51
+#define MODE_HIGH_MAX 53
+#define MODE_MID_MIN 25
 #define MODE_MID_MAX 45
-#define MODE_LOW_MIN 28
-#define MODE_LOW_MAX 30
+#define MODE_LOW_MIN 25
+#define MODE_LOW_MAX 27
 
 // servo_value
 #define FRONT_MIN -50
@@ -187,7 +187,7 @@ int pos = 0; // variable to store the servo position
 #define LPS2_ADDRESS 2
 #define ADAPTOR_ADDRESS 200
 
-boolean isRcStraight = false;
+boolean isRcStraight, isRcTrun = false;
 
 int16_t actuatorPwm_ = 255;
 
@@ -606,19 +606,8 @@ void setup()
   
   brakeAllRelease();
   
-  while(sensor_value < SENSOR_MAX_HIGH){
-    if (ebimuMetro.check() == 1)
-    EBimuCommand("*");
+  pullActuator(); //////////////// Iintial State is Standing Up
 
-    if (EBimuAsciiParser(euler_EBIMU, 3))
-    {
-      sensor_value = euler_EBIMU[1];
-     // Serial.print(euler_EBIMU[1]); Serial.print(", "); Serial.println(euler_EBIMU[2]);
-      sensor_value = map(sensor_value, 0, 70, 70, 0);
-      Serial.println(sensor_value);
-    }
-    pullActuator(); //////////////// Iintial State is Standing Up
-  }
  
   //   delay(3000);
 
@@ -684,7 +673,7 @@ void loop()
     sensor_value = euler_EBIMU[1];
    // Serial.print(euler_EBIMU[1]); Serial.print(", "); Serial.println(euler_EBIMU[2]);
     sensor_value = map(sensor_value, 0, 70, 70, 0);
-    Serial.println(sensor_value);
+//    Serial.println(sensor_value);
     is_connected = readPwm();
   
   
