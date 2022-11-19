@@ -1,42 +1,46 @@
 void rcControlA(){
 //  if(!rcStraight(getValue(1))) rcTurn(getValue(0));
-  Serial.print("rc_state= "); Serial.println(rc_state);
-  Serial.print("sensor_value= "); Serial.println(sensor_value);
-  Serial.print("sensor_min= "); Serial.println(sensor_min);
-  Serial.print("sensor_max= "); Serial.println(sensor_max);
-  
-  if(!rcStraight(getValue(1))){
-    if(!isRcTrun){
-      Serial.print("isRcStraight= "); Serial.println(isRcStraight);
-    
-      if (isRcStraight && ((rc_state == RCSTATE_PUSHFORWARD) || (rc_state == RCSTATE_PUSH_TURN))){
-        sensor_min = SENSOR_MAX_LOW;
-        Serial.print("_sensor_min= "); Serial.println(sensor_min);
-        if(sensor_value > sensor_min){
-          pushActuator();
-        }else{
-          rc_state = RCSTATE_INIT;
-          stopActuator();
-          isRcStraight = false;
-          isRcTrun = true;
-        }
-      } else if(isRcStraight && ((rc_state == RCSTATE_PULLFORWARD) || (rc_state == RCSTATE_PULL_TURN))){
-        sensor_max = SENSOR_MAX_HIGH;
-        Serial.print("_sensor_max= "); Serial.println(sensor_max);
-        if(sensor_value < sensor_max){
-          Serial.println("pull");
-          pullActuator();
-        }else{
-          rc_state = RCSTATE_INIT;
-          stopActuator();
-          isRcStraight = false;
-          isRcTrun = true;
+//  Serial.print("rc_state= "); Serial.println(rc_state);
+//  Serial.print("sensor_value= "); Serial.println(sensor_value);
+//  Serial.print("sensor_min= "); Serial.println(sensor_min);
+//  Serial.print("sensor_max= "); Serial.println(sensor_max);
+  if(sensor_value < 15) {
+    stopActuator();
+  } else{
+      if(!rcStraight(getValue(1))){
+      if(!isRcTurn){
+  //      Serial.print("isRcStraight= "); Serial.println(isRcStraight);
+      
+        if (isRcStraight && ((rc_state == RCSTATE_PUSHFORWARD) || (rc_state == RCSTATE_PUSH_TURN))){
+          sensor_min = SENSOR_MAX_LOW;
+  //        Serial.print("_sensor_min= "); Serial.println(sensor_min);
+          if(sensor_value > sensor_min){
+            pushActuator();
+          }else{
+            rc_state = RCSTATE_INIT;
+            stopActuator();
+            isRcStraight = false;
+//            isRcTurn = true;
+          }
+        } else if(isRcStraight && ((rc_state == RCSTATE_PULLFORWARD) || (rc_state == RCSTATE_PULL_TURN))){
+          sensor_max = SENSOR_MAX_HIGH;
+  //        Serial.print("_sensor_max= "); Serial.println(sensor_max);
+          if(sensor_value < sensor_max){
+  //          Serial.println("pull");
+            pullActuator();
+          }else{
+            rc_state = RCSTATE_INIT;
+            stopActuator();
+            isRcStraight = false;
+//            isRcTurn = true;
+          }
         }
       }
+      
+      rcTurn(getValue(0));
     }
-    
-    rcTurn(getValue(0));
   }
+  
 
   
   rcSensorVal(getValue(2));
@@ -51,13 +55,13 @@ void rcTurn(const int &ch_value1){
   if (ch_value1 - OFFSET > MIDDLE_VALUE) {
     turnLeft();
     isRcStraight = true;
-    isRcTrun = true;
+    isRcTurn = true;
   } else if (ch_value1 + OFFSET < MIDDLE_VALUE) {
     turnRight();
     isRcStraight = true;
-    isRcTrun = true;
+    isRcTurn = true;
   } else {
-    isRcTrun = false;
+    isRcTurn = false;
 //    rc_state = RCSTATE_INIT;
   }
 }

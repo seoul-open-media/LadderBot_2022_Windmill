@@ -96,22 +96,22 @@ int pos = 0; // variable to store the servo position
 
 //======= CALIBRATION VALUES ==============
 // rc receiver
-#define CH2_MAX 150
-#define CH3_MAX 100
+#define CH2_MAX 105
+#define CH3_MAX 105
 
-#define SENSOR_MAX_LOW 25
-#define SENSOR_MAX_HIGH 54
+#define SENSOR_MAX_LOW 35
+#define SENSOR_MAX_HIGH 60
 #define MIDDLE_VALUE 50
 #define OFFSET 10
 #define num_of_channel 6
 
 // values for ch5
-#define MODE_HIGH_MIN 51
-#define MODE_HIGH_MAX 53
-#define MODE_MID_MIN 25
-#define MODE_MID_MAX 45
-#define MODE_LOW_MIN 25
-#define MODE_LOW_MAX 27
+#define MODE_HIGH_MIN 56
+#define MODE_HIGH_MAX 58
+#define MODE_MID_MIN 35
+#define MODE_MID_MAX 55
+#define MODE_LOW_MIN 35
+#define MODE_LOW_MAX 37
 
 // servo_value
 #define FRONT_MIN -50
@@ -124,7 +124,7 @@ int pos = 0; // variable to store the servo position
 #define REAR_STRAIGHT 20
 #define FRONT_LEFT -50
 #define REAR_LEFT 40
-#define FRONT_RIGHT 30
+#define FRONT_RIGHT 50
 #define REAR_RIGHT -10
 //==========================================
 
@@ -187,7 +187,7 @@ int pos = 0; // variable to store the servo position
 #define LPS2_ADDRESS 2
 #define ADAPTOR_ADDRESS 200
 
-boolean isRcStraight, isRcTrun = false;
+boolean isRcStraight, isRcTurn = false;
 
 int16_t actuatorPwm_ = 255;
 
@@ -608,8 +608,7 @@ void setup()
   
   pullActuator(); //////////////// Iintial State is Standing Up
 
- 
-  //   delay(3000);
+     delay(3000);
 
   //   /////////////////////////////// Initialize
   //   mode = MODE_BASIC_TEST;
@@ -662,6 +661,9 @@ void loop()
   
 //  if(is_connected) rcControl();
 
+//  if(sensor_value < 15) {
+//    stopActuator();
+//  }
   if(is_connected) rcControlA();
   
 
