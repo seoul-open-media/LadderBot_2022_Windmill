@@ -94,24 +94,25 @@ int pos = 0; // variable to store the servo position
 #define HWSERIAL Serial1
 #define r_lenData 30
 
+
 //======= CALIBRATION VALUES ==============
 // rc receiver
-#define CH2_MAX 105
+#define CH2_MAX 155
 #define CH3_MAX 105
 
-#define SENSOR_MAX_LOW 35
-#define SENSOR_MAX_HIGH 60
+#define SENSOR_MAX_LOW 25
+#define SENSOR_MAX_HIGH 51
 #define MIDDLE_VALUE 50
 #define OFFSET 10
 #define num_of_channel 6
 
 // values for ch5
-#define MODE_HIGH_MIN 56
-#define MODE_HIGH_MAX 58
-#define MODE_MID_MIN 35
-#define MODE_MID_MAX 55
-#define MODE_LOW_MIN 35
-#define MODE_LOW_MAX 37
+#define MODE_HIGH_MIN 49
+#define MODE_HIGH_MAX 51
+#define MODE_MID_MIN 25
+#define MODE_MID_MAX 43
+#define MODE_LOW_MIN 25
+#define MODE_LOW_MAX 27
 
 // servo_value
 #define FRONT_MIN -50
@@ -124,7 +125,7 @@ int pos = 0; // variable to store the servo position
 #define REAR_STRAIGHT 20
 #define FRONT_LEFT -50
 #define REAR_LEFT 40
-#define FRONT_RIGHT 50
+#define FRONT_RIGHT 30
 #define REAR_RIGHT -10
 //==========================================
 
@@ -661,12 +662,12 @@ void loop()
   
 //  if(is_connected) rcControl();
 
-//  if(sensor_value < 15) {
-//    stopActuator();
-//  }
-  if(is_connected) rcControlA();
+  if(sensor_value < 10) {
+    stopActuator();
+  }else{
+    if(is_connected) rcControlA();
+  }
   
-
   if (ebimuMetro.check() == 1)
     EBimuCommand("*");
 

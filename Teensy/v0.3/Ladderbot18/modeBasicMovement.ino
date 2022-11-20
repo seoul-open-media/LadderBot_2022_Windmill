@@ -35,7 +35,6 @@ void stopBasicMovement() {
 void goStraight() {
   switch (rc_state) {
     case RCSTATE_INIT:
-      stopActuator();
       brakeAllRelease();
       rc_state = RCSTATE_PUSHFORWARD;
       break;
@@ -84,7 +83,6 @@ void goStraight() {
 void goBack() {
   switch (rc_state) {
     case RCSTATE_INIT:
-      stopActuator();
       brakeAllRelease();
       rc_state = RCSTATE_PUSHFORWARD;
       break;
@@ -227,7 +225,6 @@ void goRight() {
 void turnRight() {
   switch (rc_state) {
     case RCSTATE_INIT:
-      stopActuator();
       brakeAllRelease();
       rc_state = RCSTATE_PUSH_TURN;
       break;
@@ -275,7 +272,6 @@ void turnRight() {
 void turnLeft() {
   switch (rc_state) {
     case RCSTATE_INIT:
-      stopActuator();
       brakeAllRelease();
       rc_state = RCSTATE_PUSH_TURN;
       break;
