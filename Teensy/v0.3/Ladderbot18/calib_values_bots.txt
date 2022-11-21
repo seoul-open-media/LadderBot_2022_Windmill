@@ -116,16 +116,16 @@ BOT 5
 #define CH3_MAX 105
 
 #define SENSOR_MAX_LOW 25
-#define SENSOR_MAX_HIGH 56
+#define SENSOR_MAX_HIGH 54
 #define MIDDLE_VALUE 50
 #define OFFSET 10
 #define num_of_channel 6
 
 // values for ch5
-#define MODE_HIGH_MIN 54
-#define MODE_HIGH_MAX 56
+#define MODE_HIGH_MIN 52
+#define MODE_HIGH_MAX 54
 #define MODE_MID_MIN 25
-#define MODE_MID_MAX 45
+#define MODE_MID_MAX 43
 #define MODE_LOW_MIN 25
 #define MODE_LOW_MAX 27
 

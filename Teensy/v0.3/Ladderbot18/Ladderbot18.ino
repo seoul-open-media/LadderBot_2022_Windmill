@@ -97,22 +97,22 @@ int pos = 0; // variable to store the servo position
 
 //======= CALIBRATION VALUES ==============
 // rc receiver
-#define CH2_MAX 155
+#define CH2_MAX 150
 #define CH3_MAX 105
 
-#define SENSOR_MAX_LOW 25
-#define SENSOR_MAX_HIGH 51
+#define SENSOR_MAX_LOW 33
+#define SENSOR_MAX_HIGH 59
 #define MIDDLE_VALUE 50
 #define OFFSET 10
 #define num_of_channel 6
 
 // values for ch5
-#define MODE_HIGH_MIN 49
-#define MODE_HIGH_MAX 51
-#define MODE_MID_MIN 25
-#define MODE_MID_MAX 43
-#define MODE_LOW_MIN 25
-#define MODE_LOW_MAX 27
+#define MODE_HIGH_MIN 57
+#define MODE_HIGH_MAX 59
+#define MODE_MID_MIN 33
+#define MODE_MID_MAX 45
+#define MODE_LOW_MIN 33
+#define MODE_LOW_MAX 35
 
 // servo_value
 #define FRONT_MIN -50
@@ -121,12 +121,12 @@ int pos = 0; // variable to store the servo position
 #define REAR_MAX 50
 
 // servo direction
-#define FRONT_STRAIGHT -8
-#define REAR_STRAIGHT 20
-#define FRONT_LEFT -50
+#define FRONT_STRAIGHT -9
+#define REAR_STRAIGHT -9
+#define FRONT_LEFT -40
 #define REAR_LEFT 40
-#define FRONT_RIGHT 30
-#define REAR_RIGHT -10
+#define FRONT_RIGHT 40
+#define REAR_RIGHT -50
 //==========================================
 
 // values for ch6
@@ -421,7 +421,7 @@ int serToAct = 0;
 Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire2, OLED_RESET);
 
 // Metro
-Metro ebimuMetro = Metro(100);
+Metro ebimuMetro = Metro(30);
 Metro displayMetro = Metro(1000);
 Metro actuatorVelMetro = Metro(50);
 
@@ -662,7 +662,7 @@ void loop()
   
 //  if(is_connected) rcControl();
 
-  if(sensor_value < 10) {
+  if(sensor_value < 15) {
     stopActuator();
   }else{
     if(is_connected) rcControlA();
